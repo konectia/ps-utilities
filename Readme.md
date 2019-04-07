@@ -1,26 +1,31 @@
-#Utilidades PowerShell
+# PowerShell Utilities
 
-Utilidades desarrolladas en PowerShell.
-
-# Instalación
-Para poder ejecutar los PowerShell es preciso tener instalado NuGet y los modulos necesarios para su ejecución. Si es la primera vez que ejecuta el programa, le solicitará permiso para instalar NuGet y los módulos que precise. Acepte para poder ejecutarlos.
-
+PowerShell utilities.
+Use:
 ```
-Se necesita el proveedor de NuGet para continuar
-PowerShellGet necesita la versión del proveedor de NuGet '2.8.5.201' o posterior para interactuar con repositorios basados en NuGet. El proveedor de NuGet debe estar disponible en
-'C:\Program Files\PackageManagement\ProviderAssemblies' o 'C:\Users\Oscar\AppData\Local\PackageManagement\ProviderAssemblies'. También puedes instalar el proveedor de NuGet ejecutando 'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'. ¿Quieres que PowerShellGet se instale e importe el proveedor de NuGet ahora?
-[S] Sí [N] No [U] Suspender [?] Help (default is "Sí"):
+powershell -File [utilidad].ps1
 ```
-Pulsar [Enter]
-S
-```
-Estás instalando los módulos desde un repositorio que no es de confianza. Si confías en este repositorio, cambia su valor InstallationPolicy ejecutando el cmdlet Set-PSRepository.
-¿Estás seguro de que quieres instalar los módulos de 'PSGallery'?
-[S] Sí [O] Sí a todo [N] No [T] No a todo [U] Suspender [?] Help (default is "No"): 
 
-Pulsar [Enter (Sí)]
+# Installation
+Windows by default only executes signed scripts (see [execution policies](https:/go.microsoft.com/fwlink/?LinkID=135170)) so might be neccessary to update the policy to allow local scripts executions:
+
+It also may be neccesary to install the NuGet client and some dependencies.
 
 # Utilidades
 
-## excel-mail-remover
-A partir de una excel con una columna de emails y otra excel con los emails a eliminar, busca los emails y los elimina (ignorando mayúsculas/minusculas).
+## excel-mail-remover.ps1
+
+Search all the excel files in a directory (and subdirectories) that meet the pattern '* _subscribed_members.xlsx'. 
+For each file that it finds, it looks for a file with the name that starts the same but changing the suffix '_subscribed_members.xlsx' for '_unsuscribed_members.xlsx' and eliminates the entries of the first file that are in the second one. In addition it also eliminates duplicate entries and orders the output.
+
+Parameters:
+ * unsubscribedSuffix: Unsubscribed file suffix ('_unsuscribed_members' by default)
+ * subscribedSuffix:  Subscribed file suffix ('_subscribed_members' by default)
+ * directory: Directory to process (script direcoty by default)
+ * update: If no set, files are not modified (by default is not set)
+ * reportXls: If set summary report file (by default empty)
+
+Example of use:
+```
+powershell .\excel-mail-remover.ps1 -directory C:\data\mails -reportXls summary.xlsx -update
+```
