@@ -11,7 +11,7 @@ Windows by default only executes signed scripts (see [execution policies](https:
 
 It also may be neccesary to install the NuGet client and some dependencies.
 
-# Utilidades
+# Utilities
 
 ## excel-mail-remover.ps1
 
