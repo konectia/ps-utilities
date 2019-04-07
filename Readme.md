@@ -3,7 +3,7 @@
 PowerShell utilities.
 Use:
 ```
-powershell -File [utilidad].ps1
+powershell -File [utility].ps1
 ```
 
 # Installation
