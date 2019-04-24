@@ -1,5 +1,5 @@
 param (
-    [string]$unsubscribedSuffix = '_unsuscribed_members',
+    [string]$unsubscribedSuffix = '_unsubscribed_members',
     [string]$subscribedSuffix = '_subscribed_members',
     [string]$directory = $PSScriptRoot,
     [switch]$update = $false,
